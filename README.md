@@ -73,3 +73,7 @@ $ cast --help
 - npm or yarn
 - - MetaMask browser extension
 - Test ETH on Sepolia network
+
+### Frontend Setup
+
+UNDER DEVELOPMENT
