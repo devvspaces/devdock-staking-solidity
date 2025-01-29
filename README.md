@@ -64,3 +64,12 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+## Frontend (React + Vite)
+
+### Prerequisites
+
+- Node.js (v16 or later)
+- npm or yarn
+- - MetaMask browser extension
+- Test ETH on Sepolia network

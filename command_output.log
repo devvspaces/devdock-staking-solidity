@@ -574,3 +574,116 @@ Untracked files:
 	test/TokenStaking.t.sol
 Exit Code: 0
 ----
+Command: git add .
+Output:
+
+Exit Code: 0
+----
+Command: git commit -m update
+Output:
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   command_output.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Exit Code: 1
+----
+Command: git push
+Output:
+Everything up-to-date
+Exit Code: 0
+----
+Command: npm create vite@latest staking-dapp -- --template react-ts
+Output:
+
+> npx
+> create-vite staking-dapp --template react-ts
+
+[?25l[36m?[39m [1mTarget directory "staking-dapp" is not empty. Please choose how to proceed:[22m [90m›[39m [90m- Use arrow-keys. Return to submit.[39m
+[36m❯[39m   [36m[4mCancel operation[39m[24m[90m[39m
+    Remove existing files and continue[90m[39m
+    Ignore files and continue[90m[39m
+[2K[1G[32m✔[39m [1mTarget directory "staking-dapp" is not empty. Please choose how to proceed:[22m [90m›[39m Cancel operation
+[?25h✖ Operation cancelled
+Exit Code: 0
+----
+Command: cd ..
+Output:
+
+Exit Code: 0
+----
+Command: forge script script/Deploy.s.sol:DeployScript --rpc-url 127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+Output:
+Compiling 1 files with Solc 0.8.20
+Solc 0.8.20 finished in 422.43ms
+Error: Compiler run failed:
+Error (9582): Member "logString" not found or not visible after argument-dependent lookup in contract Vm.
+  --> script/Deploy.s.sol:17:9:
+   |
+17 |         vm.logString("Token address: ");
+   |         ^^^^^^^^^^^^
+Exit Code: 1
+----
+Command: forge script script/Deploy.s.sol:DeployScript --rpc-url 127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+Output:
+No files changed, compilation skipped
+Script ran successfully.
+
+== Logs ==
+  StakingToken deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+  TokenStaking deployed to: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 31337
+
+Estimated gas price: 2.000000001 gwei
+
+Estimated total gas used for script: 2957561
+
+Estimated amount required: 0.005915122002957561 ETH
+
+==========================
+
+SIMULATION COMPLETE. To broadcast these transactions, add --broadcast and wallet configuration(s) to the previous command. See forge script --help for more.
+
+Transactions saved to: /home/netrobe/work_projects/devdock-futa/devdock_staking/broadcast/Deploy.s.sol/31337/dry-run/run-latest.json
+
+Sensitive values saved to: /home/netrobe/work_projects/devdock-futa/devdock_staking/cache/Deploy.s.sol/31337/dry-run/run-latest.json
+Exit Code: 0
+----
+Command: npm install ethers@5.7.2 @web3modal/ethereum @web3modal/react wagmi viem
+Output:
+npm error A complete log of this run can be found in: /home/netrobe/.npm/_logs/2025-01-29T10_52_30_449Z-debug-0.log
+Exit Code: 1
+----
+Command: ls
+Output:
+README.md
+broadcast
+cache
+command_output.log
+env.dev
+foundry.toml
+git_diff_output.txt
+lib
+node_modules
+out
+script
+src
+staking-dapp
+test
+Exit Code: 0
+----
+Command: clear
+Output:
+[H[2J[3J
+Exit Code: 0
+----

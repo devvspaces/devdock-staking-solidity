@@ -11,7 +11,11 @@ contract DeployScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         StakingToken token = new StakingToken();
-        new TokenStaking(address(token));
+        TokenStaking staking = new TokenStaking(address(token));
+        
+        // Print the addresses of the deployed contracts
+        console.log("StakingToken deployed to:", address(token));
+        console.log("TokenStaking deployed to:", address(staking));
 
         vm.stopBroadcast();
     }

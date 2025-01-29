@@ -5,7 +5,7 @@ import { STAKING_CONTRACT_ADDRESS, STAKING_ABI, STAKING_TOKEN_ADDRESS, ERC20_ABI
 
 export const StakingForm = () => {
   const [amount, setAmount] = useState('');
-  const signer } = useSigner();
+  const { signer } = useSigner();
 
   const stakingContract = useContract({
     address: STAKING_CONTRACT_ADDRESS,
