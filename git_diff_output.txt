@@ -1,0 +1,143 @@
+diff --git a/README.md b/README.md
+index 9265b45..12fa1ab 100644
+--- a/README.md
++++ b/README.md
+@@ -48,7 +48,7 @@ $ anvil
+ ### Deploy
+ 
+ ```shell
+-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
++$ forge script script/Deploy.s.sol:DeployScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+ ```
+ 
+ ### Cast
+diff --git a/foundry.toml b/foundry.toml
+index 67fb223..eca670f 100644
+--- a/foundry.toml
++++ b/foundry.toml
+@@ -2,8 +2,11 @@
+ src = "src"
+ out = "out"
+ libs = ["lib"]
+-remappings = ["@openzeppelin/=lib/openzeppelin-contracts/"]
+-solc = "0.8.19"
++remappings = [
++  "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
++  "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/"
++]
++solc = "0.8.20"
+ 
+ [rpc_endpoints]
+ sepolia = "${SEPOLIA_RPC_URL}"
+diff --git a/script/Counter.s.sol b/script/Counter.s.sol
+deleted file mode 100644
+index cdc1fe9..0000000
+--- a/script/Counter.s.sol
++++ /dev/null
+@@ -1,19 +0,0 @@
+-// SPDX-License-Identifier: UNLICENSED
+-pragma solidity ^0.8.13;
+-
+-import {Script, console} from "forge-std/Script.sol";
+-import {Counter} from "../src/Counter.sol";
+-
+-contract CounterScript is Script {
+-    Counter public counter;
+-
+-    function setUp() public {}
+-
+-    function run() public {
+-        vm.startBroadcast();
+-
+-        counter = new Counter();
+-
+-        vm.stopBroadcast();
+-    }
+-}
+diff --git a/src/StakeToken.sol b/src/StakeToken.sol
+deleted file mode 100644
+index 7656e5f..0000000
+--- a/src/StakeToken.sol
++++ /dev/null
+@@ -1,15 +0,0 @@
+-// SPDX-License-Identifier: UNLICENSED
+-pragma solidity ^0.8.13;
+-
+-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+-import "@openzeppelin/contracts/access/Ownable.sol";
+-
+-contract StakingToken is ERC20, Ownable {
+-    constructor() ERC20("Staking Token", "STK") {
+-        _mint(msg.sender, 1000000 * 10 ** decimals());
+-    }
+-
+-    function mint(address to, uint256 amount) public onlyOwner {
+-        _mint(to, amount);
+-    }
+-}
+diff --git a/src/TokenStaking.sol b/src/TokenStaking.sol
+index 8d3bf51..f888960 100644
+--- a/src/TokenStaking.sol
++++ b/src/TokenStaking.sol
+@@ -1,9 +1,9 @@
+ // SPDX-License-Identifier: UNLICENSED
+-pragma solidity ^0.8.13;
++pragma solidity ^0.8.20;
+ 
+ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+ import "@openzeppelin/contracts/access/Ownable.sol";
++import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+ 
+ contract TokenStaking is ReentrancyGuard, Ownable {
+     IERC20 public stakingToken;
+@@ -23,7 +23,7 @@ contract TokenStaking is ReentrancyGuard, Ownable {
+     event Staked(address indexed user, uint256 amount, uint256 unlockTime);
+     event Unstaked(address indexed user, uint256 amount);
+     
+-    constructor(address _stakingToken) {
++    constructor(address _stakingToken) Ownable(msg.sender) {
+         require(_stakingToken != address(0), "Invalid token address");
+         stakingToken = IERC20(_stakingToken);
+     }
+@@ -70,7 +70,7 @@ contract TokenStaking is ReentrancyGuard, Ownable {
+         bool claimed
+     ) {
+         require(_index < stakes[_user].length, "Invalid stake index");
+-        StakeInfo memory stake = stakes[_user][_index];
+-        return (stake.amount, stake.timestamp, stake.unlockTime, stake.claimed);
++        StakeInfo memory stakeInfo = stakes[_user][_index];
++        return (stakeInfo.amount, stakeInfo.timestamp, stakeInfo.unlockTime, stakeInfo.claimed);
+     }
+ }
+\ No newline at end of file
+diff --git a/test/Counter.t.sol b/test/Counter.t.sol
+deleted file mode 100644
+index 54b724f..0000000
+--- a/test/Counter.t.sol
++++ /dev/null
+@@ -1,24 +0,0 @@
+-// SPDX-License-Identifier: UNLICENSED
+-pragma solidity ^0.8.13;
+-
+-import {Test, console} from "forge-std/Test.sol";
+-import {Counter} from "../src/Counter.sol";
+-
+-contract CounterTest is Test {
+-    Counter public counter;
+-
+-    function setUp() public {
+-        counter = new Counter();
+-        counter.setNumber(0);
+-    }
+-
+-    function test_Increment() public {
+-        counter.increment();
+-        assertEq(counter.number(), 1);
+-    }
+-
+-    function testFuzz_SetNumber(uint256 x) public {
+-        counter.setNumber(x);
+-        assertEq(counter.number(), x);
+-    }
+-}

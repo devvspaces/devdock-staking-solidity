@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 contract TokenStaking is ReentrancyGuard, Ownable {
     IERC20 public stakingToken;
@@ -23,7 +23,7 @@ contract TokenStaking is ReentrancyGuard, Ownable {
     event Staked(address indexed user, uint256 amount, uint256 unlockTime);
     event Unstaked(address indexed user, uint256 amount);
     
-    constructor(address _stakingToken) {
+    constructor(address _stakingToken) Ownable(msg.sender) {
         require(_stakingToken != address(0), "Invalid token address");
         stakingToken = IERC20(_stakingToken);
     }
@@ -70,7 +70,7 @@ contract TokenStaking is ReentrancyGuard, Ownable {
         bool claimed
     ) {
         require(_index < stakes[_user].length, "Invalid stake index");
-        StakeInfo memory stake = stakes[_user][_index];
-        return (stake.amount, stake.timestamp, stake.unlockTime, stake.claimed);
+        StakeInfo memory stakeInfo = stakes[_user][_index];
+        return (stakeInfo.amount, stakeInfo.timestamp, stakeInfo.unlockTime, stakeInfo.claimed);
     }
 }

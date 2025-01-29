@@ -175,3 +175,402 @@ Output:
 Reinitialized existing Git repository in /home/netrobe/work_projects/devdock-futa/devdock_staking/.git/
 Exit Code: 0
 ----
+Command: git commit -m "Initial commit"
+Output:
+On branch master
+nothing to commit, working tree clean
+Exit Code: 1
+----
+Command: forge install foundry-rs/forge-std --no-commit
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+Installing forge-std in /home/netrobe/work_projects/devdock-futa/devdock_staking/lib/forge-std (url: Some("https://github.com/foundry-rs/forge-std"), tag: None)
+    Installed forge-std v1.9.5
+Exit Code: 0
+----
+Command: forge install OpenZeppelin/openzeppelin-foundry-upgrades --no-commit
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+Installing openzeppelin-foundry-upgrades in /home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-foundry-upgrades (url: Some("https://github.com/OpenZeppelin/openzeppelin-foundry-upgrades"), tag: None)
+    Installed openzeppelin-foundry-upgrades v0.4.0
+Exit Code: 0
+----
+Command: forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+Installing openzeppelin-contracts-upgradeable in /home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-contracts-upgradeable (url: Some("https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable"), tag: None)
+    Installed openzeppelin-contracts-upgradeable v5.2.0
+Exit Code: 0
+----
+Command: export FOUNDRY_DISABLE_NIGHTLY_WARNING=1
+Output:
+
+Exit Code: 0
+----
+Command: forge build
+Output:
+[2m2025-01-29T10:19:35.308548Z[0m [31mERROR[0m [2mfoundry_compilers::resolver[0m[2m:[0m failed to resolve versions
+Error: Encountered invalid solc version in lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol: No solc version exists that matches the version requirement: ^0.8.20
+Encountered invalid solc version in lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol: No solc version exists that matches the version requirement: ^0.8.20
+Encountered invalid solc version in lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol: No solc version exists that matches the version requirement: ^0.8.20
+Encountered invalid solc version in lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol: No solc version exists that matches the version requirement: ^0.8.20
+Exit Code: 1
+----
+Command: forge install-solc --list
+Output:
+error: unrecognized subcommand 'install-solc'
+
+  tip: some similar subcommands exist: 'in', 'install'
+
+Usage: forge [OPTIONS] <COMMAND>
+
+For more information, try '--help'.
+Exit Code: 2
+----
+Command: forge install --list
+Output:
+error: unexpected argument '--list' found
+
+  tip: a similar argument exists: '--silent'
+
+Usage: forge install [OPTIONS] [DEPENDENCIES]...
+    forge install [OPTIONS] <github username>/<github project>@<tag>...
+    forge install [OPTIONS] <alias>=<github username>/<github project>@<tag>...
+    forge install [OPTIONS] <https://<github token>@git url>...)]
+    forge install [OPTIONS] <https:// git url>...
+
+For more information, try '--help'.
+Exit Code: 2
+----
+Command: forge install --list
+Output:
+error: unexpected argument '--list' found
+
+  tip: a similar argument exists: '--silent'
+
+Usage: forge install [OPTIONS] [DEPENDENCIES]...
+    forge install [OPTIONS] <github username>/<github project>@<tag>...
+    forge install [OPTIONS] <alias>=<github username>/<github project>@<tag>...
+    forge install [OPTIONS] <https://<github token>@git url>...)]
+    forge install [OPTIONS] <https:// git url>...
+
+For more information, try '--help'.
+Exit Code: 2
+----
+Command: forge build
+Output:
+Compiling 35 files with Solc 0.8.20
+Solc 0.8.20 finished in 438.43ms
+Error: Compiler run failed:
+Warning (8760): This declaration has the same name as another declaration.
+  --> src/TokenStaking.sol:73:9:
+   |
+73 |         StakeInfo memory stake = stakes[_user][_index];
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+  --> src/TokenStaking.sol:31:5:
+   |
+31 |     function stake(uint256 _amount) external nonReentrant {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Error (3415): No arguments passed to the base constructor. Specify the arguments or mark "StakingToken" as abstract.
+ --> src/StakingToken.sol:7:1:
+  |
+7 | contract StakingToken is ERC20, Ownable {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+Note: Base constructor parameters:
+  --> lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol:38:16:
+   |
+38 |     constructor(address initialOwner) {
+   |                ^^^^^^^^^^^^^^^^^^^^^^
+
+Error (3415): No arguments passed to the base constructor. Specify the arguments or mark "TokenStaking" as abstract.
+ --> src/TokenStaking.sol:8:1:
+  |
+8 | contract TokenStaking is ReentrancyGuard, Ownable {
+  | ^ (Relevant source part starts here and spans across multiple lines).
+Note: Base constructor parameters:
+  --> lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol:38:16:
+   |
+38 |     constructor(address initialOwner) {
+   |                ^^^^^^^^^^^^^^^^^^^^^^
+Exit Code: 1
+----
+Command: forge build
+Output:
+No files changed, compilation skipped
+Exit Code: 0
+----
+Command: forge build
+Output:
+No files changed, compilation skipped
+Exit Code: 0
+----
+Command: forge test
+Output:
+No files changed, compilation skipped
+
+Warning: `testFail*` has been deprecated and will be removed in the next release. Consider changing to test_Revert[If|When]_Condition and expecting a revert. Found deprecated testFail* function(s): testFailEarlyUnstaking.
+Ran 3 tests for test/TokenStaking.t.sol:TokenStakingTest
+[PASS] testFailEarlyUnstaking() (gas: 180496)
+[PASS] testStaking() (gas: 157800)
+[PASS] testUnstaking() (gas: 164176)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 1.21ms (615.10µs CPU time)
+
+Ran 1 test suite in 8.94ms (1.21ms CPU time): 3 tests passed, 0 failed, 0 skipped (3 total tests)
+Exit Code: 0
+----
+Command: forge test -vvv
+Output:
+No files changed, compilation skipped
+
+Warning: `testFail*` has been deprecated and will be removed in the next release. Consider changing to test_Revert[If|When]_Condition and expecting a revert. Found deprecated testFail* function(s): testFailEarlyUnstaking.
+Ran 3 tests for test/TokenStaking.t.sol:TokenStakingTest
+[PASS] testFailEarlyUnstaking() (gas: 180496)
+[PASS] testStaking() (gas: 157800)
+[PASS] testUnstaking() (gas: 164176)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 1.13ms (512.50µs CPU time)
+
+Ran 1 test suite in 1.03s (1.13ms CPU time): 3 tests passed, 0 failed, 0 skipped (3 total tests)
+Exit Code: 0
+----
+Command: forge test
+Output:
+No files changed, compilation skipped
+
+Ran 11 tests for test/TokenStaking.t.sol:TokenStakingTest
+[PASS] testGetStakeInfo() (gas: 159464)
+[PASS] testInitialState() (gas: 16782)
+[PASS] testMultipleStakes() (gas: 256623)
+[PASS] testStaking() (gas: 166788)
+[PASS] testStakingWithMultipleUsers() (gas: 275569)
+[PASS] testUnstaking() (gas: 171564)
+[PASS] test_RevertWhen_GetStakeInfoInvalidIndex() (gas: 14654)
+[PASS] test_RevertWhen_StakingBelowMinimum() (gas: 48403)
+[PASS] test_RevertWhen_UnstakingAlreadyClaimed() (gas: 166815)
+[PASS] test_RevertWhen_UnstakingInvalidIndex() (gas: 19572)
+[PASS] test_RevertWhen_UnstakingTooEarly() (gas: 158772)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 1.72ms (2.19ms CPU time)
+
+Ran 1 test suite in 8.65ms (1.72ms CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)
+Exit Code: 0
+----
+Command: forge test
+Output:
+Compiler run failed:
+Warning (2072): Unused local variable.
+  --> test/TokenStaking.t.sol:51:26:
+   |
+51 |         (uint256 amount, uint256 timestamp, uint256 unlockTime, bool claimed) = staking.getStakeInfo(user1, 0);
+   |                          ^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> test/TokenStaking.t.sol:31:5:
+   |
+31 |     function testInitialState() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Error (8961): Function cannot be declared as view because this expression (potentially) modifies the state.
+  --> test/TokenStaking.t.sol:38:9:
+   |
+38 |         vm.startPrank(user1);
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+Error (8961): Function cannot be declared as view because this expression (potentially) modifies the state.
+  --> test/TokenStaking.t.sol:39:9:
+   |
+39 |         token.approve(address(staking), 500 * 10**18);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (8961): Function cannot be declared as view because this expression (potentially) modifies the state.
+  --> test/TokenStaking.t.sol:43:9:
+   |
+43 |         vm.expectEmit(true, false, false, true);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (8961): Function cannot be declared as view because this expression (potentially) modifies the state.
+  --> test/TokenStaking.t.sol:44:14:
+   |
+44 |         emit Staked(user1, 500 * 10**18, expectedUnlockTime);
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (8961): Function cannot be declared as view because this expression (potentially) modifies the state.
+  --> test/TokenStaking.t.sol:46:9:
+   |
+46 |         staking.stake(500 * 10**18);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (8961): Function cannot be declared as view because this expression (potentially) modifies the state.
+  --> test/TokenStaking.t.sol:56:9:
+   |
+56 |         vm.stopPrank();
+   |         ^^^^^^^^^^^^^^
+
+Error: Compilation failed
+Exit Code: 1
+----
+Command: forge test
+Output:
+No files changed, compilation skipped
+
+Ran 11 tests for test/TokenStaking.t.sol:TokenStakingTest
+[PASS] testGetStakeInfo() (gas: 159464)
+[PASS] testInitialState() (gas: 16782)
+[PASS] testMultipleStakes() (gas: 256623)
+[PASS] testStaking() (gas: 166788)
+[PASS] testStakingWithMultipleUsers() (gas: 275569)
+[PASS] testUnstaking() (gas: 171564)
+[PASS] test_RevertWhen_GetStakeInfoInvalidIndex() (gas: 14654)
+[PASS] test_RevertWhen_StakingBelowMinimum() (gas: 48403)
+[PASS] test_RevertWhen_UnstakingAlreadyClaimed() (gas: 166815)
+[PASS] test_RevertWhen_UnstakingInvalidIndex() (gas: 19572)
+[PASS] test_RevertWhen_UnstakingTooEarly() (gas: 158772)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 69.91ms (4.23ms CPU time)
+
+Ran 1 test suite in 293.82ms (69.91ms CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)
+Exit Code: 0
+----
+Command: forge test
+Output:
+Compiler run failed:
+Error (3726): The name "_" is reserved.
+  --> test/TokenStaking.t.sol:51:26:
+   |
+51 |         (uint256 amount, uint256 _, uint256 unlockTime, bool claimed) = staking.getStakeInfo(user1, 0);
+   |                          ^^^^^^^^^
+
+Error: Compilation failed
+Exit Code: 1
+----
+Command: forge test
+Output:
+No files changed, compilation skipped
+
+Ran 11 tests for test/TokenStaking.t.sol:TokenStakingTest
+[PASS] testGetStakeInfo() (gas: 159464)
+[PASS] testInitialState() (gas: 16782)
+[PASS] testMultipleStakes() (gas: 256623)
+[PASS] testStaking() (gas: 166788)
+[PASS] testStakingWithMultipleUsers() (gas: 275569)
+[PASS] testUnstaking() (gas: 171564)
+[PASS] test_RevertWhen_GetStakeInfoInvalidIndex() (gas: 14654)
+[PASS] test_RevertWhen_StakingBelowMinimum() (gas: 48403)
+[PASS] test_RevertWhen_UnstakingAlreadyClaimed() (gas: 166815)
+[PASS] test_RevertWhen_UnstakingInvalidIndex() (gas: 19572)
+[PASS] test_RevertWhen_UnstakingTooEarly() (gas: 158772)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 17.73ms (4.58ms CPU time)
+
+Ran 1 test suite in 79.50ms (17.73ms CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)
+Exit Code: 0
+----
+Command: git remote add origin https://github.com/devvspaces/devdock-staking-solidity.git
+Output:
+error: remote origin already exists.
+Exit Code: 3
+----
+Command: git push -u origin master
+Output:
+Everything up-to-date
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+Exit Code: 0
+----
+Command: git push -u origin master
+Output:
+Everything up-to-date
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+Exit Code: 0
+----
+Command: forge test
+Output:
+No files changed, compilation skipped
+
+Ran 11 tests for test/TokenStaking.t.sol:TokenStakingTest
+[PASS] testGetStakeInfo() (gas: 159464)
+[PASS] testInitialState() (gas: 16782)
+[PASS] testMultipleStakes() (gas: 256623)
+[PASS] testStaking() (gas: 166780)
+[PASS] testStakingWithMultipleUsers() (gas: 275569)
+[PASS] testUnstaking() (gas: 171564)
+[PASS] test_RevertWhen_GetStakeInfoInvalidIndex() (gas: 14654)
+[PASS] test_RevertWhen_StakingBelowMinimum() (gas: 48403)
+[PASS] test_RevertWhen_UnstakingAlreadyClaimed() (gas: 166815)
+[PASS] test_RevertWhen_UnstakingInvalidIndex() (gas: 19572)
+[PASS] test_RevertWhen_UnstakingTooEarly() (gas: 158772)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 1.71ms (1.93ms CPU time)
+
+Ran 1 test suite in 8.66ms (1.71ms CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)
+Exit Code: 0
+----
+Command: forge script script/Deploy.s.sol:DeployScript
+Output:
+No files changed, compilation skipped
+Script ran successfully.
+Gas used: 2071253
+
+If you wish to simulate on-chain transactions pass a RPC URL.
+Exit Code: 0
+----
+Command: forge script script/Deploy.s.sol:DeployScript --rpc-url 127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+Output:
+No files changed, compilation skipped
+Script ran successfully.
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 31337
+
+Estimated gas price: 2.000000001 gwei
+
+Estimated total gas used for script: 2957561
+
+Estimated amount required: 0.005915122002957561 ETH
+
+==========================
+
+SIMULATION COMPLETE. To broadcast these transactions, add --broadcast and wallet configuration(s) to the previous command. See forge script --help for more.
+
+Transactions saved to: /home/netrobe/work_projects/devdock-futa/devdock_staking/broadcast/Deploy.s.sol/31337/dry-run/run-latest.json
+
+Sensitive values saved to: /home/netrobe/work_projects/devdock-futa/devdock_staking/cache/Deploy.s.sol/31337/dry-run/run-latest.json
+Exit Code: 0
+----
+Command: git status
+Output:
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   .gitmodules
+	new file:   lib/forge-std
+	new file:   lib/openzeppelin-contracts-upgradeable
+	new file:   lib/openzeppelin-foundry-upgrades
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+	modified:   command_output.log
+	modified:   foundry.toml
+	deleted:    script/Counter.s.sol
+	deleted:    src/StakeToken.sol
+	modified:   src/TokenStaking.sol
+	deleted:    test/Counter.t.sol
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	env.dev
+	git_diff_output.txt
+	script/Deploy.s.sol
+	src/StakingToken.sol
+	test/TokenStaking.t.sol
+Exit Code: 0
+----
