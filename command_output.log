@@ -687,3 +687,8 @@ Output:
 [H[2J[3J
 Exit Code: 0
 ----
+Command: git push
+Output:
+Everything up-to-date
+Exit Code: 0
+----
