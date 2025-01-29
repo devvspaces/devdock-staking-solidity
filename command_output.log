@@ -1,0 +1,73 @@
+
+Command: shopt -s histappend
+Output:
+
+Exit Code: 0
+----
+Command: pwd
+Output:
+/home/netrobe/work_projects/devdock-futa/devdock_staking
+Exit Code: 0
+----
+Command: forge install
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+Updating dependencies in /home/netrobe/work_projects/devdock-futa/devdock_staking/lib
+Exit Code: 0
+----
+Command: forge test
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+[2m2025-01-29T10:03:30.115973Z[0m [31mERROR[0m [2mfoundry_compilers_artifacts_solc::sources[0m[2m:[0m [3merror[0m[2m=[0m"/home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-contracts/token/ERC20/ERC20.sol": No such file or directory (os error 2)
+Error: failed to resolve file: "/home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-contracts/token/ERC20/ERC20.sol": No such file or directory (os error 2); check configured remappings
+	--> /home/netrobe/work_projects/devdock-futa/devdock_staking/src/StakeToken.sol
+	@openzeppelin/contracts/token/ERC20/ERC20.sol
+Exit Code: 1
+----
+Command: forge build
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+[2m2025-01-29T10:03:34.459725Z[0m [31mERROR[0m [2mfoundry_compilers_artifacts_solc::sources[0m[2m:[0m [3merror[0m[2m=[0m"/home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-contracts/token/ERC20/ERC20.sol": No such file or directory (os error 2)
+Error: failed to resolve file: "/home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-contracts/token/ERC20/ERC20.sol": No such file or directory (os error 2); check configured remappings
+	--> /home/netrobe/work_projects/devdock-futa/devdock_staking/src/StakeToken.sol
+	@openzeppelin/contracts/token/ERC20/ERC20.sol
+Exit Code: 1
+----
+Command: forge install OpenZeppelin/openzeppelin-contracts
+Output:
+Warning: This is a nightly build of Foundry. It is recommended to use the latest stable version. Visit https://book.getfoundry.sh/announcements for more information. 
+To mute this warning set `FOUNDRY_DISABLE_NIGHTLY_WARNING` in your environment. 
+
+Installing openzeppelin-contracts in /home/netrobe/work_projects/devdock-futa/devdock_staking/lib/openzeppelin-contracts (url: Some("https://github.com/OpenZeppelin/openzeppelin-contracts"), tag: None)
+Error: The target directory is a part of or on its own an already initialized git repository,
+and it requires clean working and staging areas, including no untracked files.
+
+Check the current git repository's status with `git status`.
+Then, you can track files with `git add ...` and then commit them with `git commit`,
+ignore them in the `.gitignore` file, or run this command again with the `--no-commit` flag.
+Exit Code: 1
+----
+Command: git status
+Output:
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   foundry.toml
+	deleted:    src/Counter.sol
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	command_output.log
+	src/StakeToken.sol
+	src/TokenStaking.sol
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Exit Code: 0
+----
